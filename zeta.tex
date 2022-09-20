@@ -6,7 +6,7 @@
 \usepackage{hyperref}
 \usepackage{physics}
 \usepackage{graphicx}
-
+\usepackage{wrapfig}
 
 
 
@@ -15,6 +15,9 @@
 
 \begin{document}
 {\bfseries \LARGE ゼータ関数の解析接続}
+\begin{flushright}
+  山口 哲
+\end{flushright}
 \section{Hurwitz ゼータ関数}
 Hurwitz ゼータ関数は、$\Re a>0$として、$\Re s>1$ で収束する級数
 \begin{align}
@@ -23,6 +26,12 @@ Hurwitz ゼータ関数は、$\Re a>0$として、$\Re s>1$ で収束する級�
 \end{align}
 を解析接続したものとして定義される。ここではこの解析接続についてまとめる。特に$s=-1$の場合が弦理論でよく現れる。また$\eta$不変量の計算に$s=0$の場合が現れる。Hurwitzゼータ関数については文献\cite{Apostol}の12章に詳しい解説がある。
 \section{積分表示}
+\begin{wrapfigure}{r}{0.4\textwidth}
+  \centering
+  \includegraphics[width=5cm]{path.pdf}
+  \caption{}
+  \label{fig:contour}
+\end{wrapfigure}
 解析接続において有用なのは積分表示
 \begin{align}
   \zeta(s,a)=\frac{\Gamma(1-s)}{2\pi i}\int_C \frac{z^{s-1}e^{az}}{1-e^{z}}dz
@@ -30,12 +39,6 @@ Hurwitz ゼータ関数は、$\Re a>0$として、$\Re s>1$ で収束する級�
 \end{align}
 である。
 ここで$C$は図\ref{fig:contour}のように実軸の負の部分（$s$が整数ではない場合にカットを入れる）を囲む経路である。
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=5cm]{path.pdf}
-  \caption{}
-  \label{fig:contour}
-\end{figure}
 
 式\eqref{integral-representation}を証明しよう。$\Re s>1,\ \Re A >0$の場合、
 \begin{align}
@@ -63,10 +66,10 @@ Hurwitz ゼータ関数は、$\Re a>0$として、$\Re s>1$ で収束する級�
 \end{align}
 一方$C_1$に関する積分は$t=-z$とおいて$t$について$\infty$から$0$の積分に書きかえる。分岐のとり方の注意すると
 \begin{align}
-  I_1&=\int_{C_1}\frac{z^{s-1}e^{az}}{1-e^{z}}dz\\
-  &=\int_{\infty}^{0}\frac{(-t)^{s-1}e^{-at}}{1-e^{-t}}(-dt)\\
-  &=-e^{-\pi i s}\int_{0}^{\infty}\frac{t^{s-1}e^{-at}}{1-e^{-t}}dt\\
-  &=-e^{-\pi i s}\Gamma(s)\zeta(s,a)
+  I_1&=\int_{C_1}\frac{z^{s-1}e^{az}}{1-e^{z}}dz
+  =\int_{\infty}^{0}\frac{(-t)^{s-1}e^{-at}}{1-e^{-t}}(-dt)
+  =-e^{-\pi i s}\int_{0}^{\infty}\frac{t^{s-1}e^{-at}}{1-e^{-t}}dt
+  =-e^{-\pi i s}\Gamma(s)\zeta(s,a)
 \end{align}
 となる。最後のところでは、式\eqref{integral-representation2}の結果を用いた。同様にして$C_3$の積分も
 \begin{align}
@@ -128,6 +131,13 @@ Hurwitz ゼータ関数は、$\Re a>0$として、$\Re s>1$ で収束する級�
   \zeta(-1,a)=-\frac12(B_2a^0+2B_1a^1+B_0a^2)=-\frac{1}{12}+\frac12 a-\frac12a^2
 \end{align}
 などを得る。
+
+ちなみに、$a$の多項式
+\begin{align}
+  B_{n}(a):=-n\zeta(-n+1,a)=\sum_{k=0}^{n}\binom{n}{k}B_{n-k}a^k
+\end{align}
+はBernoulli多項式と呼ばれる。
+
 \section{物理的手法}
 
 ここで物理的な手法（正則化と繰り込み）を用いて、発散する級数から有限の値を得る
